@@ -208,6 +208,10 @@ INSERT INTO `employees` (`EMPLOYEE_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHO
 ('204', 'Hermann', 'Baer', 'HBAER', '515.123.8888', '1987-09-29', 'PR_REP', '10000.00', '0.00', '101', '70'),
 ('205', 'Shelley', 'Higgins', 'SHIGGINS', '515.123.8080', '1987-09-30', 'AC_MGR', '12000.00', '0.00', '101', '110'),
 ('206', 'William', 'Gietz', 'WGIETZ', '515.123.8181', '1987-10-01', 'AC_ACCOUNT', '8300.00', '0.00', '205', '110');
+-- @BLOCK
+INSERT INTO `employees` (`EMPLOYEE_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE_NUMBER`, `HIRE_DATE`, `JOB_ID`, `SALARY`, `COMMISSION_PCT`, `MANAGER_ID`, `DEPARTMENT_ID`) VALUES
+('207', 'Wil09am', 'Gietz', 'WGETZ', '515.123.8181', '1987-10-01', 'AC_ACCOUNT', '8300.00', '0.00', '205', '110');
+
 
 --
 -- Table structure for table `job_history`
@@ -384,3 +388,76 @@ FROM employees;
 -- 
 SELECT COUNT(*)
 FROM employees;
+
+-- @block
+-- Write a query to get the number of jobs available in the employees table.
+-- 
+SELECT COUNT(DISTINCT job_id)
+FROM employees;
+
+-- @block
+-- 11. Write a query get all first name from employees table in upper case.
+-- 
+SELECT UPPER(first_name)
+FROM employees;
+
+-- @block
+-- 11. Write a query get all first name from employees table in upper case.
+-- 
+SELECT UPPER(first_name)
+FROM employees;
+
+-- @block
+-- 12. Write a query to get the first 3 characters of first name from employees table.
+-- 
+SELECT substring(first_name, 1, 3) AS "3 CHARACTERS"
+FROM employees;
+
+-- @block
+-- 13. Write a query to calculate 171*214+625
+-- 
+SELECT 171*214+625 "RESULT"
+-- FROM employees;
+
+-- @block
+-- 14. Write a query to get the names (for example Ellen Abel, Sundar Ande etc.) of all the employees from employees table
+-- 
+SELECT CONCAT(first_name, ' ', last_name) AS 'Full Name'
+FROM employees;
+
+-- @block
+-- 15. Write a query to get first name from employees table after removing white spaces from both side.
+-- 
+SELECT TRIM(first_name)
+FROM employees;
+
+-- @block
+-- 16. Write a query to get the length of the employee names (first_name, last_name) from employees table.
+-- 
+SELECT LENGTH(first_name) + LENGTH(last_name) AS 'FULL LENGTH'
+FROM employees;
+
+-- @block
+-- 17. Write a query to check if the first_name fields of the employees table contains numbers.
+-- 
+SELECT first_name
+FROM employees
+WHERE first_name REGEXP '[0-9]';
+
+-- @block
+-- 18. Write a query to select first 10 records from a table.
+-- 
+SELECT *
+FROM employees
+LIMIT 10;
+
+-- @block
+-- Write a query to get monthly salary (round 2 decimal places) of each and every employee
+-- 
+SELECT first_name, last_name, ROUND(salary/12, 2) as 'Monthly Salary'
+FROM employees
+LIMIT 10;
+-- #####*########***********#########***********
+-- 
+--  MySQL Restricting and Sorting data:
+-- 
