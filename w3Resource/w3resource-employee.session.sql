@@ -460,4 +460,75 @@ LIMIT 10;
 -- #####*########***********#########***********
 -- 
 --  MySQL Restricting and Sorting data:
+--
+
+-- @BLOCK
+-- 1. Write a query to display the name (first_name, last_name) and salary for all employees whose salary is not in the range $10,000 through $15,000
 -- 
+SELECT first_name, last_name, salary
+from employees
+WHERE salary NOT BETWEEN 10000 AND 15000
+
+-- @BLOCK
+-- 2. Write a query to display the name (first_name, last_name) and department ID of all employees in departments 30 or 100 in ascending order.
+-- 
+SELECT first_name, last_name, department_id
+from employees
+WHERE department_id IN (30,100)
+-- WHERE department_id = 30 OR department_id = 100
+
+-- @BLOCK
+-- 3. Write a query to display the name (first_name, last_name) and salary for all employees whose salary is not in the range $10,000 through $15,000 and are in department 30 or 100.
+SELECT first_name, last_name, salary, department_id
+from employees
+WHERE salary NOT BETWEEN 10000 AND 15000
+AND department_id = 30 OR department_id = 100
+
+-- @BLOCK
+-- 4. Write a query to display the name (first_name, last_name) and hire date for all employees who were hired in 1987
+SELECT first_name, last_name, hire_date
+from employees
+WHERE YEAR(hire_date) LIKE '1987%'
+
+-- @BLOCK
+-- 5. Write a query to display the first_name of all employees who have both "b" and "c" in their first name.
+SELECT first_name
+from employees
+WHERE first_name LIKE '%b%'
+AND first_name LIKE '%c%'
+
+-- @BLOCK
+-- 6. Write a query to display the last name, job, and salary for all employees whose job is that of a Programmer or a Shipping Clerk, and whose salary is not equal to $4,500, $10,000, or $15,000
+SELECT last_name, job_id, salary
+from employees
+WHERE job_id IN ('IT_PROG', 'SH_CLERK')
+AND SALARY NOT IN (4500, 10000, 15000)
+
+-- @BLOCK
+-- 7. Write a query to display the last name of employees whose names have exactly 6 characters. 
+SELECT last_name
+from employees
+WHERE last_name LIKE '______'
+-- WHERE LENGTH(last_name) = 6
+
+-- @BLOCK
+-- 8. Write a query to display the last name of employees having 'e' as the third character.
+SELECT last_name
+from employees
+WHERE last_name LIKE '__e%'
+
+-- @BLOCK
+-- 9. Write a query to display the jobs/designations available in the employees table.
+SELECT DISTINCT job_id
+FROM employees;
+
+-- @BLOCK
+-- 10. Write a query to display the name (first_name, last_name), salary and PF (15% of salary) of all employees.
+SELECT CONCAT(first_name, ' ', last_name) AS 'NAME' , salary, salary * 0.15 AS 'PF'
+FROM employees;
+
+-- @BLOCK
+-- 11. Write a query to select all record from employees where last name in 'BLAKE', 'SCOTT', 'KING' and 'FORD'.
+SELECT *
+FROM employees
+WHERE last_name IN (blake', 'scott', 'king', 'ford');
